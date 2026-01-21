@@ -226,7 +226,7 @@ function App() {
 
         {/* Statistics Dashboard */}
         <div className="stats-toggle">
-          <button onClick={() => setShowStats(showStats)} className="toggle-stats-btn">
+          <button onClick={() => setShowStats(!showStats)} className="toggle-stats-btn">
             {showStats ? 'Hide Stats' : 'Show Stats'}
           </button>
         </div>
@@ -270,7 +270,7 @@ function App() {
               className="task-input" 
             />
 
-            <div className="task-option">
+            <div className="task-options">
               <select
                 value={priority} 
                 onChange={(e) => setPriority(e.target.value)}
@@ -362,8 +362,9 @@ function App() {
                   {editingId === task.id ? (
                     <input 
                       type="text"
-                      value={(e) => setEditValue(e.target.value)}
-                      onChange={(e) => handleEditKeyPress(e, task.id)}
+                      value={editValue}
+                      onChange={(e) => setEditValue(e.target.value)}
+                      onKeyPress={(e) => handleEditKeyPress(e, task.id)}
                       className="edit-input"
                       autoFocus
                     />
@@ -435,93 +436,6 @@ function App() {
         )}
       </div>
     </div>
-    
-    // <div className="app">
-    //   <div className="container">
-    //     <h1>My To-Do List</h1>
-
-    //     {/* Add Task Section */}
-    //     <div className="input-section">
-    //       <input 
-    //         type="text"
-    //         placeholder='Add a new task...'
-    //         value={inputValue}
-    //         onChange={(e) => setInputValue(e.target.value)}
-    //         onKeyPress={handleKeyPress}
-    //         className="task-input"
-    //       />
-    //       <button onClick={addTask} className="add-button">
-    //         Add
-    //       </button>
-    //     </div>
-
-    //     {/* Task List */}
-    //     <div className="task-list">
-    //       {tasks.length === 0 ? (
-    //         <p className="empty-message">No tasks yet. Add one above!</p>
-    //       ) : (
-    //         tasks.map((task) => (
-    //           <div key={task.id} className={`task-item ${task.completed ? 'completed' : ''}`}>
-
-    //             {/* Checkbox to mark complete */}
-    //             <input 
-    //               type="checkbox"
-    //               checked={task.completed}
-    //               onChange={() => toggleComplete(task.id)}
-    //               className="checkbox" 
-    //             />
-
-    //             {/* Task Text or Edit Input */}
-    //             {editingId === task.id ? (
-    //               <input 
-    //                 type="text"
-    //                 value={editValue}
-    //                 onChange={(e) => setEditValue(e.target.value)}
-    //                 onKeyDown={(e) => handleEditKeyPress(e, task.id)}
-    //                 className="edit-input"
-    //                 autoFocus  
-    //               />
-    //             ) : (
-    //               <span className="task-text">{task.text}</span>
-    //             )}
-
-    //             {/* Action buttons */}
-    //             <div className="task-actions">
-    //               {editingId === task.id ? (
-    //                 <>
-    //                   <button onClick={() => saveEdit(task.id)} className="save-button">
-    //                     ✓
-    //                   </button>
-    //                   <button onClick={cancelEdit} className="cancel-button">
-    //                     ✗
-    //                   </button>
-    //                 </>
-    //               ) : (
-    //                 <>
-    //                   <button onClick={() => startEdit(task.id, task.text)} className="edit-button">
-    //                     ✏️
-    //                   </button>
-    //                   <button onClick={() => deleteTask(task.id)} className="delete-button">
-    //                     🗑️
-    //                   </button>
-    //                 </>
-    //               )}
-    //             </div>
-    //           </div>
-    //         ))
-    //       )}
-    //     </div>
-
-    //     {/* Task Counter */}
-    //     {tasks.length > 0 && (
-    //       <div className="task-counter">
-    //         <p>
-    //           Total: {tasks.length} | Completed: {tasks.filter(t => t.completed).length}
-    //         </p>
-    //       </div>
-    //     )}
-    //   </div>
-    // </div>
   );
 }
 
